@@ -1,16 +1,98 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification Application</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
+    <div class="container">
+        <h1 id="verification_heading">Verification</h1>
+        <h2 id="verification_subtext">Please enter the 6-digit code sent to your device.</h2>
 
+        <div class="code-container">
+            <!-- Six input fields for code entry -->
+            <input type="text" class="code" maxlength="1" id="input1" />
+            <input type="text" class="code" maxlength="1" id="input2" />
+            <input type="text" class="code" maxlength="1" id="input3" />
+            <input type="text" class="code" maxlength="1" id="input4" />
+            <input type="text" class="code" maxlength="1" id="input5" />
+            <input type="text" class="code" maxlength="1" id="input6" />
+        </div>
+    </div>
+
+    <script >
+        const inputs = document.querySelectorAll('.code');
+
+
+inputs.forEach((input, index) => {
+    input.addEventListener('input', (e) => {
+       
+        if (input.value.length === 1 && index < inputs.length - 1) {
+            inputs[index + 1].focus();
+        }
+    });
+  
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace' && input.value === '') {
+            if (index > 0) {
+                inputs[index - 1].focus();
+            }
+        }
+    });
+})
+    </script>
 </body>
-
 </html>
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#verification_heading {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+#verification_subtext {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.code-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.code {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+.code:focus {
+    border-color: #4d90fe;
+}
+
+</style>
